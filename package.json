@@ -1,0 +1,16 @@
+{
+  "name": "lunk-twig",
+  "version": "1.0.0",
+  "description": "Clone of LinkTree",
+  "scripts": {
+    "start": "lerna run start --parallel",
+    "install:yarn": "lerna run yarn --parallel",
+    "install:npm": "lerna run npm --parallel",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TBlackford",
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
