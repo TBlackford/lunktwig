@@ -1,2 +1,0 @@
-INSERT INTO app_user(name)
-VALUES ($1) RETURNING *

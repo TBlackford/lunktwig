@@ -1,14 +1,20 @@
+import { LinkModel } from '../../../backend/src/db/';
 
-export interface AppUser {
+export interface LinkPayload {
     id: number;
-    name: string;
+    url: string;
+    text: string;
+    isActive: boolean;
+    position: number;
+    userId: number;
 }
 
-export interface Links {
-    user: AppUser;
-
+export interface AppUserPayload {
+    id: number;
+    firstName: string;
+    lastName: string;
+    username: string;
+    email: string;
+    links?: LinkModel[];
 }
 
-export interface Interface {
-    
-}
