@@ -1,15 +1,16 @@
 import { NextPage } from 'next';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { LinkPayload } from '../../common/src/models';
 
 const LinkPage: NextPage = () => {
-    const router = useRouter();
     const [username, setUsername] = useState<string | null>();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [links, setLinks] = useState([]);
 
+    const router = useRouter();
 
     useEffect(() => {
         if(!router.isReady) return;
@@ -21,18 +22,39 @@ const LinkPage: NextPage = () => {
             .then(res => {
                 console.log(res.data);
                 setLinks(res.data.links);
+                setIsLoading(false);
             })
-    }, [setUsername, router])
+            .catch(res => {
+                console.log(res);
+                router.replace('/404');
+            })
+    }, [setUsername, router]);
 
+    if (isLoading) {
+        return (
+            <div className="max-w-full max-h-full text-center m-auto">
+                Loading...
+            </div>
+        )
+    }
     return (
-        <div>
-            <h1 className="title">{ username }</h1>
-            <ul>
-                {links.map((link: LinkPayload) => {
-                    return <li key={link.id}>{link.text}</li>
-                })}
-            </ul>
-        </div>
+        <>
+            {/* This is the background colour */}
+            <div className="fixed bg-cover bg-amber-300 bg-no-repeat bg-center z-[-1] w-full h-full" />
+
+            <div className="max-w-[680px] m-auto pt-[60px] flex-col justify-evenly pt-[24px] pb-[12px]">
+                <h1 className="text-3xl text-center pb-[60px]">@{ username }</h1>
+                <div className="max-w-full max-h-full m-[20px]">
+                    {links.map((link: LinkPayload) => {
+                        return (
+                            <div className="min-h-[60px] border-4 border-indigo-600 mt-5 first:mt-0 flex justify-center items-center hover:bg-indigo-600 hover:text-white hover:cursor-pointer" key={link.id}>
+                                <a href={"https://" + link.url} className="align-middle w-full text-center">{link.text}</a>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+        </>
     )
 }
 

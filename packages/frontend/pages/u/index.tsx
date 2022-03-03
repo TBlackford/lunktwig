@@ -1,18 +1,7 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type { NextPage } from 'next';
 
 const UserIndex: NextPage = () => {
-    return (
-        <div>
-            <Head>
-                <title>Lunktwig</title>
-            </Head>
-
-            <main>
-                <p>User Index</p>
-            </main>
-        </div>
-    )
+    return <div>Loading</div>
 }
 
 export default UserIndex

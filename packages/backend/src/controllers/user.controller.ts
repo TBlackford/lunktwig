@@ -14,12 +14,15 @@ export const userRouterFactory = (
                 .catch(next)
         )
 
-
         .get('/users/:username', (req: Request, res: Response, next: NextFunction) =>
-            userRepository.findOne({ where: { username: req.params.username }, include: [linkRepository]  })
+            userRepository.findOne({
+                where: { username: req.params.username },
+                include: [linkRepository],
+                attributes: ['firstName', 'lastName', 'username', 'email']
+            })
                 .then(user => user
                     ? res.json(user)
-                    : next({ statusCode: 404, data: JSON.stringify(user) }))
+                    : next({ statusCode: 404 }))
                 .catch(next)
         )
 
