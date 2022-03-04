@@ -25,17 +25,44 @@ a {
 .bg-iphone {
     width: 375px;
     height: 812px;
-    overflow: hidden;
-
     border-radius: 10%;
+    transform: scale(0.9) translateY(0%) translateX(0) translate3d(0px, 0px, 0px);;
 }
 
 .bg-iphone::after {
     width: 400px;
-    transform: translateX(38%);
+    /*transform: translateX(38%);*/
     background-image: url('/iphone.png');
     content: "";
     position: absolute;
     background-repeat: round;
-    inset: -1.8% -5.6%;
+    inset: -1.8% -3.6%;
 }
+
+/*.bg-iphone {*/
+/*    width: 352px;*/
+/*    height: 724px;*/
+/*    padding: 16px;*/
+/*    display: block;*/
+/*    margin: 0 auto;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform-origin: top left;*/
+/*    transform: translateY(-50%) translateX(-50%) translateZ(0);*/
+/*}*/
+
+
+/*.bg-iphone::after {*/
+/*    content: "";*/
+/*    background-image: url('/iphone.png');*/
+/*    background-position: 50%;*/
+/*    background-size: contain;*/
+/*    background-repeat: no-repeat;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    pointer-events: none;*/
+/*}*/

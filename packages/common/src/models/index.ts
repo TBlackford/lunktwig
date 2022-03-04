@@ -15,6 +15,6 @@ export interface AppUserPayload {
     lastName: string;
     username: string;
     email: string;
-    links?: LinkModel[];
+    links?: LinkPayload[];
 }
 
