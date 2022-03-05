@@ -39,30 +39,16 @@ a {
     inset: -1.8% -3.6%;
 }
 
-/*.bg-iphone {*/
-/*    width: 352px;*/
-/*    height: 724px;*/
-/*    padding: 16px;*/
-/*    display: block;*/
-/*    margin: 0 auto;*/
-/*    position: absolute;*/
-/*    top: 50%;*/
-/*    left: 50%;*/
-/*    transform-origin: top left;*/
-/*    transform: translateY(-50%) translateX(-50%) translateZ(0);*/
-/*}*/
+.position-dots {
+    fill: currentcolor;
+    color: rgb(172, 181, 191);
+    width: 20px;
+}
 
+input:checked ~ .dot {
+    transform: translateX(100%);
+}
 
-/*.bg-iphone::after {*/
-/*    content: "";*/
-/*    background-image: url('/iphone.png');*/
-/*    background-position: 50%;*/
-/*    background-size: contain;*/
-/*    background-repeat: no-repeat;*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    bottom: 0;*/
-/*    pointer-events: none;*/
-/*}*/
+input:checked ~ .block {
+    background: #48bb78;
+}

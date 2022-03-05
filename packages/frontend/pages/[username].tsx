@@ -20,7 +20,6 @@ const LinkPage: NextPage = () => {
 
         axios.get(process.env.NEXT_PUBLIC_API_URL + '/users/' + username)
             .then(res => {
-                console.log(res.data);
                 setLinks(res.data.links);
                 setIsLoading(false);
             })
@@ -32,7 +31,7 @@ const LinkPage: NextPage = () => {
 
     if (isLoading) {
         return (
-            <div className="max-w-full max-h-full text-center m-auto">
+            <div className="max-w-[680px] m-auto pt-[60px] flex-col justify-evenly pt-[24px] pb-[12px]">
                 Loading...
             </div>
         )
@@ -46,11 +45,16 @@ const LinkPage: NextPage = () => {
                 <h1 className="text-3xl text-center pb-[60px]">@{ username }</h1>
                 <div className="max-w-full max-h-full m-[20px]">
                     {links.map((link: LinkPayload) => {
-                        return (
-                            <div className="min-h-[60px] border-4 border-indigo-600 mt-5 first:mt-0 flex justify-center items-center hover:bg-indigo-600 hover:text-white hover:cursor-pointer" key={link.id}>
-                                <a href={"https://" + link.url} className="align-middle w-full text-center">{link.text}</a>
-                            </div>
-                        )
+                        if (link.isActive) {
+                            return (
+                                <div
+                                    className="min-h-[60px] border-4 border-indigo-600 mt-5 first:mt-0 flex justify-center items-center hover:bg-indigo-600 hover:text-white hover:cursor-pointer"
+                                    key={link.id}>
+                                    <a href={"https://" + link.url}
+                                       className="align-middle w-full text-center">{link.text}</a>
+                                </div>
+                            )
+                        }
                     })}
                 </div>
             </div>
