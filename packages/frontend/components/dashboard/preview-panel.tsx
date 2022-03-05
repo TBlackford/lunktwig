@@ -1,13 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 
-import { AppUserPayload } from '../../common/src/models';
 import { NextPage } from 'next';
+import { useStore } from '../../app/store';
 
-export interface PreviewProps {
-    user: AppUserPayload
-}
 
-const PreviewPanel: NextPage<PreviewProps> = ({ user }) => {
+const PreviewPanel: NextPage = () => {
+    const user = useStore(state => state.user);
+    const iframeReloader = useStore(state => state.iframeReloader);
+
     const url = process.env.NEXT_PUBLIC_URL + '/' + user?.username;
     return (
         <>
@@ -17,7 +17,7 @@ const PreviewPanel: NextPage<PreviewProps> = ({ user }) => {
                 </div>
                 <div className="flex h-[calc(100%-62px)] w-full align-middle items-center content-center p-[100px] bg-[#f5f6f8]">
                     <div className="left-[50%] bg-iphone">
-                        <iframe className="w-full h-full w-[375px] h-[812px] rounded-[2rem]" src="http://localhost:3000/jdoe" title="Your Links" />
+                        <iframe key={iframeReloader} className="w-full h-full w-[375px] h-[812px] rounded-[2rem]" src="http://localhost:3000/jdoe" title="Your Links" />
                     </div>
                 </div>
             </div>

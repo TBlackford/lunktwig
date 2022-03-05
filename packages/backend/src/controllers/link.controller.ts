@@ -21,6 +21,21 @@ export const linkRouterFactory = (
                 .catch(next)
         )
 
+        .post('/link/:id', (req: Request, res: Response, next: NextFunction) =>
+            linkRepository.findByPk(req.params.id)
+                .then(link => {
+                    link.update(req.body)
+                        .then(async link => {
+                            link = await link.save()
+                            link
+                                ? res.json(link)
+                                : next({ statusCode: 404 })
+                        })
+                        .catch(next)
+                })
+                .catch(next)
+        )
+
         .get('/link/:id/disable', (req: Request, res: Response, next: NextFunction) => {
             linkRepository.findByPk(req.params.id)
                 .then(link => {

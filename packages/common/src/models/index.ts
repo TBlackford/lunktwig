@@ -1,7 +1,7 @@
 import { LinkModel } from '../../../backend/src/db/';
 
 export interface LinkPayload {
-    id: number;
+    id?: number;
     url: string;
     text: string;
     isActive: boolean;

@@ -18,11 +18,30 @@ export const userRouterFactory = (
             userRepository.findOne({
                 where: { username: req.params.username },
                 include: [linkRepository],
-                attributes: ['firstName', 'lastName', 'username', 'email']
+                attributes: ['firstName', 'lastName', 'username', 'email', 'id']
             })
                 .then(user => user
                     ? res.json(user)
                     : next({ statusCode: 404 }))
+                .catch(next)
+        )
+
+    // TODO: find out why this isn't saving links?
+        .post('/users/:username', (req: Request, res: Response, next: NextFunction) =>
+            userRepository.findOne({
+                where: { username: req.params.username },
+                include: [linkRepository]
+            })
+                .then(user => {
+                    user.update(req.body)
+                        .then(async user => {
+                            user = await user.save()
+                            user
+                                ? res.json(user)
+                                : next({ statusCode: 404 })
+                        })
+                        .catch(next)
+                })
                 .catch(next)
         )
 
