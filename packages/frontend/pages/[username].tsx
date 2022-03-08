@@ -59,7 +59,7 @@ const LinkPage: NextPage = () => {
             <div className="max-w-[680px] m-auto pt-[60px] flex-col justify-evenly pt-[24px] pb-[12px]">
                 <h1 className="text-3xl text-center pb-[60px]">@{ user.username }</h1>
                 <div className="max-w-full max-h-full m-[20px]">
-                    <UserLinkList links={user.links} />
+                    <UserLinkList links={links} />
                 </div>
             </div>
         </>

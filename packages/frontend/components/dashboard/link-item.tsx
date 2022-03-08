@@ -83,6 +83,8 @@ const InputTextbox: NextPage<{ item: LinkPayload, type: 'TEXT' | 'URL', icon: Ic
 }
 
 const LinkItem: NextPage<LinkItemProps> = ({ item, index, moveLink }) => {
+    const deleteLink = useStore(state => state.deleteLink);
+
     const ref = useRef<HTMLDivElement>(null);
     const [{ handlerId }, drop] = useDrop<
             DragItem,
@@ -159,6 +161,10 @@ const LinkItem: NextPage<LinkItemProps> = ({ item, index, moveLink }) => {
         }),
     }));
 
+    const onDelete = () => {
+        deleteLink(item.id);
+    }
+
     drag(drop(ref));
 
     return (
@@ -178,7 +184,7 @@ const LinkItem: NextPage<LinkItemProps> = ({ item, index, moveLink }) => {
                         <ToggleButton item={item} />
                     </div>
                     <div className="flex items-end justify-end w-full">
-                        <FontAwesomeIcon className="cursor-pointer pr-[20px]" icon={faTrashCan} color="#f57a7a" />
+                        <FontAwesomeIcon className="cursor-pointer pr-[20px]" icon={faTrashCan} color="#f57a7a" onClick={onDelete} />
                     </div>
                 </div>
             </div>

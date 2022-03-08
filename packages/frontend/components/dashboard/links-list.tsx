@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { NextPage } from 'next';
 import update from 'immutability-helper'
 
@@ -12,13 +12,13 @@ export interface LinksListProps {
 }
 
 const LinksList: NextPage<LinksListProps> = ({ links }) => {
-    const user = useStore(state => state.user);
-    const updateUser = useStore(state => state.updateUser);
     const updateLink = useStore(state => state.updateLink);
+    const iframeReloader = useStore(state => state.iframeReloader);
     const incrementReloader = useStore(state => state.incrementReloader);
     const [draggableLinks, setLinks] = useState(links);
 
-    if(!links) {
+    if(!links || !draggableLinks) {
+        console.log(draggableLinks, typeof draggableLinks);
         return <div />
     }
 
@@ -42,6 +42,7 @@ const LinksList: NextPage<LinksListProps> = ({ links }) => {
 
     const renderLinkItem = useCallback(
         (link: LinkPayload, index: number) => {
+            console.log(link);
             return (
                 <LinkItem
                     key={link.id}
@@ -55,7 +56,7 @@ const LinksList: NextPage<LinksListProps> = ({ links }) => {
     );
 
     return (
-        <div className="pt-[80px] m-auto flex flex-col items-center">
+        <div className="pt-[80px] m-auto flex flex-col items-center" key={iframeReloader}>
             {draggableLinks.map((link, index) => renderLinkItem(link, index))}
         </div>
     )
