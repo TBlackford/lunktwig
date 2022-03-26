@@ -3,7 +3,6 @@ import { Repository } from 'sequelize-typescript';
 
 import { AppUserModel } from '../db/';
 import { linkRepository } from '../db/repositories';
-import { LinkPayload } from '@common/models';
 
 export const userRouterFactory = (
         userRepository: Repository<AppUserModel>,

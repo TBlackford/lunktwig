@@ -6,6 +6,7 @@ import { useStore } from '../app/store';
 
 import PreviewPanel from '../components/dashboard/preview-panel';
 import LinksPanel from '../components/dashboard/links-panel';
+import Sidebar from '../components/dashboard/sidebar';
 
 
 const DashboardPage: NextPage = () => {
@@ -23,6 +24,8 @@ const DashboardPage: NextPage = () => {
     return (
         <>
             <div className="flex absolute h-full w-full">
+                <Sidebar />
+
                 {/* Links Panel */}
                 <LinksPanel />
 
